@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PasswordNote</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="common_currency_cny">¥</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="login_name_hint">请输入用户名</string>
+    <string name="login_password_hint">请输入用户密码</string>
+
+
+</resources>
