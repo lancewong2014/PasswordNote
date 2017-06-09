@@ -4,7 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="14dp">
+    android:paddingLeft="14dp"
+    android:paddingRight="14dp"
+    android:paddingTop="14dp">
     <android.support.design.widget.TextInputLayout
         android:id="@+id/il_login_name"
         android:layout_width="match_parent"
@@ -41,8 +43,27 @@
             android:imeOptions="actionDone"
             android:hint="@string/login_password_hint"/>
     </android.support.design.widget.TextInputLayout>
+
     <TextView
+        android:id="@+id/tv_login"
+        style="@style/style_txt_normal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height_normal"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/slt_login_click"
+        android:textColor="@color/text_white"
+        android:text="@string/login_title"/>
+    <View android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/tv_login_register"
+        style="@style/style_txt_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/common_currency_cny"/>
+        android:padding="14dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/slt_login_register"
+        android:text="@string/login_register"/>
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.whitekapok.passwordnote;
+package com.whitekapok.passwordnote.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.whitekapok.passwordnote.R;
 import com.whitekapok.passwordnote.db.DBHelper;
 import com.whitekapok.passwordnote.entity.NoteEntity;
 

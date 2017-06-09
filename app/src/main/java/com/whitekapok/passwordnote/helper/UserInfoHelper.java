@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.whitekapok.passwordnote.db.DBHelper;
 import com.whitekapok.passwordnote.entity.UserEntity;
+import com.whitekapok.passwordnote.utils.EncryptorUtil;
 
 /**
  *
@@ -52,6 +53,21 @@ public class UserInfoHelper {
         }
     }
 
-
+    /**
+     * 密码直接保存本地，不再做
+     * @param entity
+     * @return
+     */
+    public boolean checkLogin(UserEntity entity){
+        if(entity==null||TextUtils.isEmpty(entity.getUsername())){
+            return false;
+        }
+        UserEntity resultEntity=DBHelper.getInstance().getUser(entity.getUsername());
+        //如果密码正确
+        if(resultEntity!=null&&TextUtils.equals(resultEntity.getPassword(), EncryptorUtil.encryptMD5ToString(entity.getPassword(),resultEntity.getUid()))){
+            return true;
+        }
+        return false;
+    }
 
 }

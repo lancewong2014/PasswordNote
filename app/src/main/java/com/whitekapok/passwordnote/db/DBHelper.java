@@ -15,6 +15,7 @@ import com.whitekapok.passwordnote.entity.KeyEntityDao;
 import com.whitekapok.passwordnote.entity.NoteEntity;
 import com.whitekapok.passwordnote.entity.NoteEntityDao;
 import com.whitekapok.passwordnote.entity.UserEntity;
+import com.whitekapok.passwordnote.entity.UserEntityDao;
 import com.whitekapok.passwordnote.helper.UserInfoHelper;
 
 import org.greenrobot.greendao.database.Database;
@@ -41,6 +42,7 @@ public class DBHelper {
 
     private NoteEntityDao noteEntityDao;
     private GroupEntityDao groupDao;
+    private UserEntityDao userDao;
     private DaoSession daoSession;
     private DaoSession commonDaoSession;
     private DBHelper() {
@@ -69,6 +71,7 @@ public class DBHelper {
         }
         commonDaoSession=new DaoMaster(commonDatabase).newSession();
         keyEntityDao=commonDaoSession.getKeyEntityDao();
+        userDao=commonDaoSession.getUserEntityDao();
     }
 
     private void closeDB(){
@@ -198,6 +201,19 @@ public class DBHelper {
         groupDao.update(groupEntity);
     }
 
+
+    /**************************************查询用户信息 start**********************************************************/
+    public UserEntity getUser(String username){
+        QueryBuilder builder=userDao.queryBuilder();
+        builder.where(UserEntityDao.Properties.Username.eq(username));
+        List<UserEntity> result=builder.list();
+        if(result!=null&&!result.isEmpty()){
+            return result.get(0);
+        }
+        return null;
+    }
+
+    /**************************************查询用户信息 end**********************************************************/
     public static class UpdateHelper extends DaoMaster.OpenHelper{
 
         public UpdateHelper(Context context, String name) {
