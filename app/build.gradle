@@ -36,12 +36,12 @@ dependencies {
     compile 'com.android.support:support-annotations:' + rootProject.ext.supportVersion
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.greenrobot:greendao:3.2.2' // add library
-    //compile 'org.greenrobot:greendao:3.2.0'
+    compile 'net.zetetic:android-database-sqlcipher:3.5.6'
     //compile 'com.github.WhiteKapok:StatusView:v0.0.1'
     compile 'com.google.code.gson:gson:2.4'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.17'
-    //compile 'com.blankj:utilcode:1.6.4'
+    compile 'com.blankj:utilcode:1.6.4'
     compile 'com.github.clans:fab:1.6.4'
     compile 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'

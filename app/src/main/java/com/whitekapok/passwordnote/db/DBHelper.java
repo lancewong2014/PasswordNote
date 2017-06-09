@@ -120,6 +120,20 @@ public class DBHelper {
         }
     }
 
+    public void updateLoginUser(UserEntity userEntity){
+        KeyEntity keyBean=new KeyEntity();
+        keyBean.setKey(KeyEntity.KEY_LOGIN);
+        keyBean.setValue(new Gson().toJson(userEntity));
+        keyBean.setUid(KeyEntity.DEFAULT_USER);
+        KeyEntity oldBean=getKeyBean(KeyEntity.DEFAULT_USER,KeyEntity.KEY_LOGIN);
+        if(oldBean!=null){
+            oldBean.setValue(new Gson().toJson(userEntity));
+            keyEntityDao.update(oldBean);
+        }else{
+            keyEntityDao.insert(keyBean);
+        }
+    }
+
     /**
      * 根据用户uid和key值查找
      * @param uid uid
@@ -173,7 +187,7 @@ public class DBHelper {
      * 获取所有的item
      * @return List<NoteEntity>
      */
-    public List<NoteEntity> gtNoteListAll(){
+    public List<NoteEntity> getNoteListAll(){
         QueryBuilder builder= noteEntityDao.queryBuilder();
         return builder.list();
     }
@@ -211,6 +225,10 @@ public class DBHelper {
             return result.get(0);
         }
         return null;
+    }
+
+    public void saveUser(UserEntity userEntity){
+        userDao.save(userEntity);
     }
 
     /**************************************查询用户信息 end**********************************************************/

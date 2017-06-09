@@ -1,12 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tl_register"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="@string/register_title"
+        app:titleTextColor="@color/text_white"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:popupTheme="@style/AppTheme.PopupOverlay"/>
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_register_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
+            android:hint="@string/register_username"/>
     </android.support.design.widget.TextInputLayout>
+    <View
+        style="@style/style_line_divider"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
+            android:maxLength="32"
+            android:inputType="textPassword"
+            android:digits="@string/register_password_digits"
+            android:hint="@string/register_password_hint"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        style="@style/style_line_divider"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_register_password_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
+            android:maxLength="32"
+            android:digits="@string/register_password_digits"
+            android:inputType="textPassword"
+            android:hint="@string/register_password_confirm"/>
+    </android.support.design.widget.TextInputLayout>
+    <View
+        style="@style/style_line_divider"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="42dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"/>
+
+    <TextView
+        android:id="@+id/tv_register"
+        style="@style/style_txt_normal"
+        android:gravity="center"
+        android:layout_margin="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height_normal"
+        android:background="@drawable/slt_login_click"
+        android:textColor="@color/slt_login_register"
+        android:text="@string/register_add"/>
 </LinearLayout>

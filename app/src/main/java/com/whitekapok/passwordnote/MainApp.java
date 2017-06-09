@@ -2,7 +2,7 @@ package com.whitekapok.passwordnote;
 
 import android.app.Application;
 
-import com.whitekapok.passwordnote.helper.UserInfoHelper;
+import com.whitekapok.passwordnote.utils.ToastUtil;
 
 /**
  *
@@ -11,6 +11,7 @@ import com.whitekapok.passwordnote.helper.UserInfoHelper;
 
 public class MainApp extends Application {
     private static MainApp instance;
+    private ToastUtil toastUtil;
 
     @Override
     public void onCreate() {
@@ -20,5 +21,12 @@ public class MainApp extends Application {
 
     public static MainApp getInstance(){
         return instance;
+    }
+
+    public ToastUtil getToastUtil() {
+        if(toastUtil==null){
+            toastUtil=new ToastUtil(this);
+        }
+        return toastUtil;
     }
 }

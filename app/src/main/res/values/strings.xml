@@ -10,7 +10,19 @@
     <string name="login_name_hint">请输入用户名</string>
     <string name="login_password_hint">请输入密码</string>
     <string name="login_title">登录</string>
-    <string name="login_register">注册</string>
+    <string name="login_register">添加帐号</string>
 
+    <string name="register_password_digits">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="register_password_not_empty">密码不能为空</string>
+    <string name="register_username_not_empty">用户名不能为空</string>
+    <string name="register_username">请输入帐号</string>
+    <string name="register_password_hint">请输入32位以下密码</string>
+    <string name="register_password_confirm">请再次输入密码</string>
+    <string name="register_add">添加帐号</string>
+    <string name="register_title">添加帐号</string>
+    <string name="register_password_not_equal">前后两次输入的密码不相同</string>
+    <string name="register_username_exist">该用户名已经存在</string>
+    <string name="login_username_password_error">用户名或者密码不正确</string>
+    <string name="login_success">登录成功</string>
 
 </resources>

@@ -4,7 +4,10 @@ import android.text.TextUtils;
 
 import com.whitekapok.passwordnote.db.DBHelper;
 import com.whitekapok.passwordnote.entity.UserEntity;
+import com.whitekapok.passwordnote.event.LoginEvent;
 import com.whitekapok.passwordnote.utils.EncryptorUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  *
@@ -65,6 +68,9 @@ public class UserInfoHelper {
         UserEntity resultEntity=DBHelper.getInstance().getUser(entity.getUsername());
         //如果密码正确
         if(resultEntity!=null&&TextUtils.equals(resultEntity.getPassword(), EncryptorUtil.encryptMD5ToString(entity.getPassword(),resultEntity.getUid()))){
+            DBHelper.getInstance().updateLoginUser(resultEntity);
+            //DBHelper.getInstance().updateKeyValue(resultEntity.getUid(), KeyEntity.KEY_LOGIN,new Gson().toJson(resultEntity));
+            EventBus.getDefault().post(new LoginEvent(resultEntity));
             return true;
         }
         return false;
