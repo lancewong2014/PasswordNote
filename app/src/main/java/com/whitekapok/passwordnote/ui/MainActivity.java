@@ -1,88 +1,92 @@
 package com.whitekapok.passwordnote.ui;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.whitekapok.passwordnote.R;
-import com.whitekapok.passwordnote.db.DBHelper;
-import com.whitekapok.passwordnote.entity.NoteEntity;
+import com.whitekapok.passwordnote.adapter.MainPageAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    @BindView(R.id.action_main_add_item)
+    FloatingActionButton actionMainAddItem;
+    @BindView(R.id.action_main_add_group)
+    FloatingActionButton actionMainAddGroup;
+    @BindView(R.id.main_fab)
+    FloatingActionsMenu mainFab;
+    @BindView(R.id.nav_main_view)
+    NavigationView navMainView;
+    @BindView(R.id.toolbar_main)
+    Toolbar toolbarMain;
+    @BindView(R.id.drawer_main)
+    DrawerLayout drawerMain;
+    @BindView(R.id.tab_main)
+    TabLayout tabMain;
+    @BindView(R.id.vp_main)
+    ViewPager vpMain;
+
+    private List<Fragment> mainFragList;
+    private MainPageAdapter mAdapter;
+    private MainItemFrag mainItemFrag;
+    private MainFavFrag mainFavFrag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ButterKnife.bind(this);
+        setSupportActionBar(toolbarMain);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+                this, drawerMain, toolbarMain, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerMain.setDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        testSwitch();
+        navMainView.setNavigationItemSelectedListener(this);
+        initActivity();
     }
 
-    private int userid;
-    private void testSwitch(){
-        TextView switchText= (TextView) findViewById(R.id.tv_main_switch);
-        switchText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userid++;
-                DBHelper.getInstance().openDB("user_"+userid,""+userid);
-                testDB();
-            }
-        });
+    private void initActivity(){
+        initViewPager();
     }
 
-    private void testDB(){
-        for (int i = 0; i < 20; i++) {
-            NoteEntity noteEntity=new NoteEntity();
-            noteEntity.setItemAddTime(System.currentTimeMillis());
-            noteEntity.setItemName("item_"+i);
-            noteEntity.setItemGroup("item_group_"+i%10);
-            DBHelper.getInstance().addNoteEntity(noteEntity);
+    private void initViewPager(){
+        mainFragList=new ArrayList<>();
+        mainItemFrag= (MainItemFrag) getSupportFragmentManager().findFragmentByTag("ItemFrag");
+        if(mainItemFrag==null){
+            mainItemFrag=new MainItemFrag();
         }
-        List<NoteEntity> noteList= DBHelper.getInstance().getNoteListGroup("null");
-        for (NoteEntity noteEntity : noteList) {
-            System.out.print(noteEntity);
+        mainFragList.add(mainItemFrag);
+        mainFavFrag=(MainFavFrag)getSupportFragmentManager().findFragmentByTag("FavFrag");
+        if(mainFavFrag==null){
+            mainFavFrag=new MainFavFrag();
         }
-
+        mainFragList.add(mainFavFrag);
+        mAdapter=new MainPageAdapter(getSupportFragmentManager(),mainFragList);
+        vpMain.setAdapter(mAdapter);
+        tabMain.setupWithViewPager(vpMain);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawerMain.isDrawerOpen(GravityCompat.START)) {
+            drawerMain.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -129,9 +133,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        drawerMain.closeDrawer(GravityCompat.START);
         return true;
     }
 }

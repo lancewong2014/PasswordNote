@@ -19,16 +19,26 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-
+    <style name="style_txt_title">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_title</item>
+    </style>
     <style name="style_txt_normal">
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">@dimen/text_normal</item>
     </style>
-
+    <style name="style_txt_sub_normal">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/text_subnormal</item>
+    </style>
     <style name="style_line_divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
         <item name="android:background">@color/divider</item>
     </style>
 
+    <style name="style_fab_menu_labels">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">@color/fab_white</item>
+    </style>
 </resources>

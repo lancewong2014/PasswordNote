@@ -16,4 +16,9 @@
     <color name="divider">#BDBDBD</color>
 
     <color name="text_white">#FFFFFF</color>
+
+
+    <color name="fab_half_black">#808080</color>
+    <color name="fab_white">#fafafa</color>
+    <color name="fab_white_pressed">#f1f1f1</color>
 </resources>
