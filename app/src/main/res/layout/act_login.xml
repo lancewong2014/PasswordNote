@@ -7,13 +7,11 @@
     android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
         android:id="@+id/tl_login"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         app:title="@string/login_title"
         app:titleTextColor="@color/text_white"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        style="@style/style_main_toolbar" />
     <android.support.design.widget.TextInputLayout
         android:id="@+id/il_login_name"
         android:layout_width="match_parent"
